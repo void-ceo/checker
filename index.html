@@ -1,96 +1,103 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Инструкция к проверке через AnyDesk</title>
-  <meta name="description" content="Правила проверки через AnyDesk и список разрешённых программ.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TurboGrief — инструкция к проверке</title>
+<meta name="description" content="TurboGrief: инструкция к проверке через AnyDesk, разрешённые программы и команды поиска читов.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
 
-  <header class="site-header">
-    <a class="brand" href="#top">
-      <img src="favicon.svg" alt="" width="34" height="34">
-      <span>AnyDesk&nbsp;Check</span>
-    </a>
-    <nav class="site-nav">
-      <a href="#rules" data-i18="nav.rules">Правила</a>
-      <a href="#programs" data-i18="nav.programs">Программы</a>
-    </nav>
-  </header>
-
-  <!-- Переключатель языка: справа сбоку -->
-  <div class="lang-switch" role="group" aria-label="Язык / Language">
-    <button type="button" class="lang-btn" data-lang="ru" aria-pressed="true">
-      <svg viewBox="0 0 30 20" width="24" height="16" aria-hidden="true">
-        <clipPath id="fr"><rect width="30" height="20" rx="3"/></clipPath>
-        <g clip-path="url(#fr)">
-          <rect width="30" height="20" fill="#fff"/>
-          <rect y="6.67" width="30" height="6.66" fill="#0039A6"/>
-          <rect y="13.33" width="30" height="6.67" fill="#D5212E"/>
-        </g>
-      </svg>
-      <span>Русский</span>
-    </button>
-    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">
-      <svg viewBox="0 0 30 20" width="24" height="16" aria-hidden="true">
-        <clipPath id="fg"><rect width="30" height="20" rx="3"/></clipPath>
-        <g clip-path="url(#fg)">
-          <rect width="30" height="20" fill="#012169"/>
-          <path d="M0 0 L30 20 M30 0 L0 20" stroke="#fff" stroke-width="4"/>
-          <path d="M0 0 L30 20 M30 0 L0 20" stroke="#C8102E" stroke-width="2"/>
-          <path d="M15 0 V20 M0 10 H30" stroke="#fff" stroke-width="6"/>
-          <path d="M15 0 V20 M0 10 H30" stroke="#C8102E" stroke-width="4"/>
-        </g>
-      </svg>
-      <span>English</span>
-    </button>
+<!-- плавучая стеклянная панель -->
+<nav class="site-nav glass" aria-label="Основная навигация">
+  <a class="brand" href="#home" data-goto="home">
+    <img src="favicon.svg" alt="" class="brand-logo">
+    <span class="brand-name">TurboGrief</span>
+  </a>
+  <div class="nav-links">
+    <a href="#home" data-goto="home" data-i18="nav.home">Главная</a>
+    <a href="#content" data-goto="programs" data-i18="nav.programs">Программы</a>
   </div>
+  <div class="lang-switch" role="group" aria-label="Язык">
+    <button type="button" class="lang-btn" data-lang="ru">RU</button>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+  </div>
+</nav>
 
-  <main id="top">
-    <section class="hero">
-      <h1 data-i18="hero.title">Инструкция к&nbsp;проверке через&nbsp;AnyDesk</h1>
-      <p class="subtitle" data-i18="hero.sub">Пожалуйста, ознакомьтесь с&nbsp;правилами перед началом проверки</p>
-    </section>
+<main>
 
-    <section id="rules" class="rules">
-      <article class="rule-card">
-        <span class="rule-num">1</span>
+  <!-- Главная -->
+  <section id="home" class="hero">
+    <h1 class="hero-title" data-i18="hero.title">Инструкция к&nbsp;проверке через&nbsp;AnyDesk</h1>
+    <p class="hero-sub" data-i18="hero.sub">Пожалуйста, ознакомьтесь с&nbsp;правилами перед началом проверки</p>
+
+    <div class="rules">
+      <article class="rule glass">
+        <span class="material-symbols-rounded rule-ic">mouse</span>
         <h2 data-i18="r1.title">Не трогайте мышь</h2>
         <p data-i18="r1.body">Во время проверки вы&nbsp;не должны трогать мышь и&nbsp;двигать ею.</p>
       </article>
-
-      <article class="rule-card">
-        <span class="rule-num">2</span>
+      <article class="rule glass">
+        <span class="material-symbols-rounded rule-ic">verified</span>
         <h2 data-i18="r2.title">Разрешённые программы</h2>
         <p data-i18="r2.body">Разрешённые и&nbsp;безопасные программы на&nbsp;проверке на&nbsp;читы:</p>
-        <a class="btn" href="#programs" data-i18="r2.btn">посмотреть весь список</a>
+        <a class="rule-link" href="#content" data-goto="programs" data-i18="r2.btn">посмотреть весь список</a>
       </article>
-
-      <article class="rule-card">
-        <span class="rule-num">3</span>
+      <article class="rule glass">
+        <span class="material-symbols-rounded rule-ic">emoji_events</span>
         <h2 data-i18="r3.title">Итоги проверки</h2>
         <p data-i18="r3.body">Если найдут читы&nbsp;— бан. Признание&nbsp;— бан с&nbsp;уменьшенным сроком, а&nbsp;если вы&nbsp;чисты, вам могут дать подарок.</p>
       </article>
-    </section>
+    </div>
+  </section>
 
-    <section id="programs" class="programs">
-      <div class="programs-head">
-        <h2 data-i18="prog.title">Разрешённые программы</h2>
-        <input id="search" type="search" aria-label="Поиск программы">
+  <!-- Контент: сегмент переключателя + вкладки -->
+  <section id="content">
+
+    <div class="tabbar glass" role="tablist" aria-label="Разделы">
+      <button type="button" class="tab-btn" data-tab="programs" role="tab" aria-selected="true" data-i18="tab.programs">Программы</button>
+      <button type="button" class="tab-btn" data-tab="teams" role="tab" aria-selected="false" data-i18="tab.teams">Команды</button>
+    </div>
+
+    <!-- Вкладка: Программы -->
+    <div id="view-programs" class="view" role="tabpanel">
+      <h2 class="section-title" data-i18="prog.title">Программы для проверок</h2>
+
+      <aside class="alert" role="note">
+        <div class="alert-head">
+          <span class="material-symbols-rounded alert-ic">warning</span>
+          <strong data-i18="alert.title">Важное предупреждение</strong>
+        </div>
+        <p class="alert-body" data-i18="alert.body"></p>
+      </aside>
+
+      <div class="search-wrap glass">
+        <span class="material-symbols-rounded search-ic">search</span>
+        <input id="search" type="search" autocomplete="off" placeholder="Поиск программы…">
       </div>
+
       <div id="grid" class="grid"></div>
       <p id="empty" class="empty" hidden data-i18="prog.empty">Ничего не найдено — попробуйте другое название.</p>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <p data-i18="footer">Список обновляется администрацией. Сомневаетесь в&nbsp;программе — спросите до&nbsp;начала проверки.</p>
-  </footer>
+      <p class="footer-note" data-i18="footer">Список обновляется администрацией. Сомневаетесь в&nbsp;программе — спросите до&nbsp;начала проверки.</p>
+    </div>
 
-  <script src="app.js"></script>
+    <!-- Вкладка: Команды -->
+    <div id="view-teams" class="view" role="tabpanel" hidden>
+      <h2 class="section-title" data-i18="tab.teams">Команды</h2>
+      <div id="teams-list" class="teams"></div>
+    </div>
+
+  </section>
+</main>
+
+<script src="programs-data.js"></script>
+<script src="ui-data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
