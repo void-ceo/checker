@@ -1,4 +1,4 @@
-﻿/* ===== логика страницы: страницы, вкладки, поиск, копирование, пасхалка ===== */
+/* ===== логика страницы: страницы, вкладки, поиск, копирование, пасхалка ===== */
 let lang = localStorage.getItem("lang") || "ru";
 let tab = localStorage.getItem("tab") === "teams" ? "teams" : "programs";
 let page = ["home", "news", "programs"].includes(localStorage.getItem("page"))
@@ -105,7 +105,7 @@ function render() {
     const link = p.url
       ? ` href="${href}" target="_blank" rel="noopener noreferrer"`
       : "";
-    const soon = ""; /* флаг Checker Soon убран по запросу */
+    const soon = p.soon ? `<span class="soon-badge">SOON</span>` : "";
     const hover = `<span class="card-hover" aria-hidden="true">
         <span class="material-symbols-rounded dl-ic">download</span>
         <span class="dl-label">${esc(t["card.download"])}</span>

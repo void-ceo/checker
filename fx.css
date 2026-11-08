@@ -109,6 +109,11 @@
   80% { text-shadow: 2px 0 #6ea8fe, -2px 0 #d946ef; transform: translateX(-2px); }
 }
 
+/* Атрибут hidden должен скрывать оверлей: display:flex ниже перебивал
+   правило [hidden] из пользовательского UA-стиля, из-за чего невидимый
+   (opacity:0) полноэкранный слой перехватывал все клики на странице. */
+.egg-overlay[hidden] { display: none; }
+
 .egg-overlay {
   position: fixed;
   inset: 0;
@@ -193,4 +198,36 @@ body.egg-open { overflow: hidden; }
   .section-title.shimmer, .egg-code, .egg-msg, .egg-card, .egg-hint { animation: none; }
   .card:hover, .team-card:hover, .tab-btn:hover, .nav-links a:hover,
   .copy-btn:hover, .lang-btn:hover, .brand-logo:hover { transform: none; }
+}
+
+/* hero title on Programs page: plain, bold, centered */
+.hero-title.plain {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--text);
+  -webkit-text-fill-color: currentColor;
+  text-align: center;
+  margin: 0 auto 22px;
+}
+
+/* SOON badge in Checker description: same pink-violet shimmer */
+.soon-badge {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff5fa2, #d946ef, #8b5cf6, #ff5fa2);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-move 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .soon-badge { animation: none; }
 }

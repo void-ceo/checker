@@ -72,7 +72,7 @@ const I18N = {
 
 /* ===== страница «Новости»: один анонс (тексты берутся из I18N по ключам) ===== */
 const NEWS_ITEMS = [
-  { tag: "announce", titleKey: "news.a1.title", bodyKey: "news.a1.body", ruDate: "01.01.2027", enDate: "Jan 1, 2027" }
+  { tag: "announce", titleKey: "news.a1.title", bodyKey: "news.a1.body", ruDate: "08.11.2026", enDate: "Nov 8, 2026" }
 ];
 
 /* ===== вкладки «Команды»: копируемые Everything-запросы ===== */

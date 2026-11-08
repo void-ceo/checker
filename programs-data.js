@@ -1,4 +1,4 @@
-﻿const PROGRAMS = [
+const PROGRAMS = [
   { name: "AlternateStreamView", url: "https://www.nirsoft.net/utils/alternate_data_streams.html",
     ru: "Просмотр альтернативных потоков данных NTFS", en: "View NTFS alternate data streams" },
   { name: "BAMParser", url: "https://release-assets.githubusercontent.com/github-production-release-asset/890129826/43223953-f0eb-4544-9ba2-bd0a4181d38b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-11-08T02%3A03%3A55Z&rscd=attachment%3B+filename%3DBAMParser.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-11-08T01%3A03%3A41Z&ske=2026-11-08T02%3A03%3A55Z&sks=b&skv=2018-11-09&sig=mEhOirzz6WmAWdVbDAA6Tuj0Bw2e6G7ZHx2NTHzqxSc%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5NDEwMTQzOCwibmJmIjoxNzk0MTAxMTM4LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.KDsQOoBzxW6y1V7ILli3a39tUuHE-2aBMCggiAdJ5Kw&response-content-disposition=attachment%3B%20filename%3DBAMParser.exe&response-content-type=application%2Foctet-stream",
@@ -17,7 +17,7 @@
     ru: "Список когда-либо запущенных программ", en: "List of previously executed programs" },
   { name: "FTK Imager", url: "https://go.exterro.com/l/43312/2023-05-03/fc4b78",
     ru: "Образы дисков и анализ памяти", en: "Disk imaging and memory analysis" },
-  { name: "Checker", url: null,
+  { name: "Checker", url: null, soon: true,
     ru: "Инструмент проверки — скоро доступен", en: "Verification tool — coming soon" },
   { name: "JournalTrace", url: "https://release-assets.githubusercontent.com/github-production-release-asset/899349770/ab6a048b-1554-4866-86ee-9c5cee36bc24?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-11-08T02%3A30%3A31Z&rscd=attachment%3B+filename%3DJournalTrace.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-11-08T01%3A29%3A35Z&ske=2026-11-08T02%3A30%3A31Z&sks=b&skv=2018-11-09&sig=uix%2BR6AC6CuP5zTrZqmexkcMkRvBsDAK1hLF2o744RE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5NDEwMTY3NSwibmJmIjoxNzk0MTAxMzc1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.3jtvuah5jzl-7mcglQuZSU1evsZCeL4hVxP9RBLMvMw&response-content-disposition=attachment%3B%20filename%3DJournalTrace.exe&response-content-type=application%2Foctet-stream",
     ru: "Чтение NTFS-журналов ($UsnJrnl)", en: "Reads NTFS change journals ($UsnJrnl)" },
