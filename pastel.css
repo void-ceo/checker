@@ -1,0 +1,153 @@
+/* ===== pastel.css: единый градиент (как у «Программы для проверок»),
+   hover-блюр «Нажми на меня», страница «Правила», свечение ссылки checker ===== */
+
+/* ---------- 1. тот же градиент, что у .section-title.shimmer в fx.css ---------- */
+/* #ff5fa2 → #d946ef → #8b5cf6, перелив 300% / 4s. Пастельных полос больше нет. */
+
+.brand-name,
+.click-title {
+  background: linear-gradient(90deg, #ff5fa2, #d946ef, #8b5cf6, #ff5fa2);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-move 4s ease-in-out infinite;
+}
+
+/* заголовок на странице «Программы» был перекрашен родителем — возвращаем текст-градиент */
+.hero-title.plain .click-title {
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+/* «Инструкция к проверке через AnyDesk» — ссылка, а не обычный текст */
+.click-title {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.click-title:hover {
+  filter: drop-shadow(0 0 14px rgba(217, 70, 239, 0.55));
+}
+
+/* ---------- 2. hover: заголовок блюрится + жирная надпись «Нажми на меня» ---------- */
+.hero-title.plain { position: relative; }
+
+.ct-text { transition: filter .25s ease; }
+
+.clickme {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font: 900 clamp(1.05rem, 2.4vw, 1.6rem) "Inter", sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 14px rgba(217, 70, 239, 0.95), 0 0 36px rgba(139, 92, 246, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+}
+
+.hero-title.plain:hover .clickme,
+.hero-title.plain:focus-within .clickme { opacity: 1; }
+
+.hero-title.plain:hover .ct-text,
+.hero-title.plain:focus-within .ct-text { filter: blur(7px); }
+
+/* ---------- 3. ссылка void-ceo.github.io/checker в предупреждении ---------- */
+.alert-link {
+  color: #d946ef;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-radius: 6px;
+  transition: color .2s ease, text-shadow .25s ease;
+}
+
+.alert-link:hover {
+  color: #ff8fd0;
+  text-shadow: 0 0 12px rgba(217, 70, 239, 1), 0 0 30px rgba(139, 92, 246, 0.6);
+}
+
+/* ---------- 4. страница «Правила» (открывается только по клику на «Инструкцию») ---------- */
+.rules-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 150px 20px 70px;
+  text-align: center;
+}
+
+.rules-wrap .section-title { margin-bottom: 26px; }
+
+.rules-list {
+  list-style: none;
+  counter-reset: rule;
+  margin: 0 0 28px;
+  padding: 26px;
+  border-radius: var(--radius-l);
+  text-align: left;
+  display: grid;
+  gap: 18px;
+}
+
+.rules-list li {
+  counter-increment: rule;
+  position: relative;
+  padding-left: 60px;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.rules-list li::before {
+  content: counter(rule);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font: 900 1.05rem "Inter", sans-serif;
+  color: #ff5fa2;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--glass-br);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--glass-br);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  transition: background .22s ease, transform .22s ease, border-color .22s ease;
+}
+
+.back-link:hover {
+  background: var(--glass-strong);
+  border-color: rgba(217, 70, 239, 0.45);
+  transform: translateY(-2px);
+}
+
+/* ---------- 5. адаптив и уважение к prefers-reduced-motion ---------- */
+@media (max-width: 640px) {
+  .rules-wrap { padding-top: 120px; }
+  .rules-list { padding: 18px; }
+  .rules-list li { padding-left: 54px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-name, .click-title { animation: none; }
+  .clickme, .ct-text { transition: none; }
+}
