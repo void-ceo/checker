@@ -1,7 +1,7 @@
 /* ===== логика страницы: страницы, вкладки, поиск, копирование, пасхалка ===== */
 let lang = localStorage.getItem("lang") || "ru";
 let tab = localStorage.getItem("tab") === "teams" ? "teams" : "programs";
-let page = ["home", "news", "programs"].includes(localStorage.getItem("page"))
+let page = ["home", "news", "programs", "rules"].includes(localStorage.getItem("page"))
   ? localStorage.getItem("page") : "home";
 
 const grid = document.getElementById("grid");
@@ -13,11 +13,13 @@ const teamsList = document.getElementById("teams-list");
 const newsList = document.getElementById("news-list");
 const tabButtons = document.querySelectorAll(".tab-btn");
 const navLinks = document.querySelectorAll(".site-nav [data-page]");
+const pageLinks = document.querySelectorAll("a[data-page]");
 const eggOverlay = document.getElementById("egg-overlay");
 const pages = {
   home: document.getElementById("home"),
   news: document.getElementById("news"),
-  programs: document.getElementById("content")
+  programs: document.getElementById("content"),
+  rules: document.getElementById("rules")
 };
 
 function esc(s) {
@@ -32,7 +34,7 @@ function animateIn(el) {
   el.classList.add("anim-in");
 }
 
-/* ---------- страницы: Главная / Новости / Программы (по одной) ---------- */
+/* ---------- страницы: Главная / Новости / Программы / Правила (скрытая) ---------- */
 function showPage(name, scroll) {
   page = pages[name] ? name : "home";
   localStorage.setItem("page", page);
@@ -53,7 +55,8 @@ function showPage(name, scroll) {
   }
 }
 
-navLinks.forEach(a =>
+/* любая ссылка с data-page (плавучка, «Инструкция…», кнопка «назад») ведёт на страницу */
+pageLinks.forEach(a =>
   a.addEventListener("click", e => {
     e.preventDefault();
     showPage(a.dataset.page, true);
