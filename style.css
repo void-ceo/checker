@@ -70,6 +70,59 @@ a { color: inherit; text-decoration: none; }
 
 .site-nav a:hover { color: var(--text); background: var(--panel); }
 
+/* ===== language switch (fixed, right side) ===== */
+.lang-switch {
+  position: fixed;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(7, 8, 15, 0.75);
+  backdrop-filter: blur(10px);
+  color: var(--muted);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, box-shadow .2s, transform .2s;
+}
+
+.lang-btn svg {
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+  flex: 0 0 auto;
+}
+
+.lang-btn:hover {
+  color: var(--text);
+  border-color: rgba(109, 93, 252, 0.5);
+  transform: translateX(-2px);
+}
+
+.lang-btn[aria-pressed="true"] {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(92deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 8px 22px rgba(109, 93, 252, 0.35);
+}
+
+@media (max-width: 1180px) {
+  .lang-btn span { display: none; }
+  .lang-btn { padding: 8px; }
+}
+
 /* ===== layout ===== */
 main {
   width: min(1100px, 100% - clamp(24px, 6vw, 80px));
@@ -184,96 +237,106 @@ main {
 
 #search::placeholder { color: var(--muted); }
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.chip {
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: var(--panel);
-  color: var(--muted);
-  font: inherit;
-  font-size: 13.5px;
-  cursor: pointer;
-  transition: color .2s, border-color .2s, background .2s;
-}
-
-.chip:hover { color: var(--text); }
-
-.chip.active {
-  color: #fff;
-  border-color: transparent;
-  background: linear-gradient(92deg, var(--accent-1), var(--accent-2));
-}
-
-/* grid of cards */
+/* grid of rounded plates */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
 }
 
 .card {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 158px;
+  padding: 18px;
   border-radius: var(--radius);
   background: var(--panel);
   border: 1px solid var(--panel-border);
   transition: transform .2s, border-color .2s, box-shadow .2s;
 }
 
-.card:hover {
+.card:hover,
+.card:focus-within {
   transform: translateY(-3px);
-  border-color: rgba(62, 198, 255, 0.4);
-  box-shadow: 0 12px 32px rgba(62, 198, 255, 0.12);
+  border-color: rgba(62, 198, 255, 0.45);
+  box-shadow: 0 12px 32px rgba(62, 198, 255, 0.14);
 }
 
 .card-icon {
-  flex: 0 0 auto;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 13px;
-  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 19px;
   background: linear-gradient(135deg, rgba(109, 93, 252, 0.35), rgba(62, 198, 255, 0.25));
   border: 1px solid var(--panel-border);
 }
 
-.card-body { min-width: 0; }
-
 .card-name {
-  font-size: 15px;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
-.card-cat {
-  font-size: 12.5px;
+.card-desc {
+  font-size: 13px;
   color: var(--muted);
 }
 
-.badge {
-  margin-left: auto;
-  flex: 0 0 auto;
-  padding: 4px 10px;
+/* hidden download plate — appears on hover / keyboard focus */
+.dl {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: .4px;
-  text-transform: uppercase;
-  color: #7dffb0;
-  background: rgba(125, 255, 176, 0.12);
-  border: 1px solid rgba(125, 255, 176, 0.25);
+  color: #fff;
+  background: linear-gradient(92deg, var(--accent-1), var(--accent-2));
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .22s, transform .22s, filter .2s;
+}
+
+.card:hover .dl,
+.card:focus-within .dl {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dl:hover { filter: brightness(1.15); }
+
+.dl svg { flex: 0 0 auto; }
+
+.dl:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* “Checker Soon” plate (no link) */
+.soon {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: #ffd27d;
+  background: rgba(255, 199, 92, 0.12);
+  border: 1px solid rgba(255, 199, 92, 0.35);
 }
 
 .empty {
@@ -294,6 +357,7 @@ main {
 /* ===== motion ===== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .rule-card, .card, .btn { transition: none; }
+  .rule-card, .card, .btn, .dl, .lang-btn { transition: none; }
   .rule-card:hover, .card:hover { transform: none; }
+  .dl { transform: none; }
 }

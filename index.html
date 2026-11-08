@@ -17,53 +17,78 @@
       <span>AnyDesk&nbsp;Check</span>
     </a>
     <nav class="site-nav">
-      <a href="#rules">Правила</a>
-      <a href="#programs">Программы</a>
+      <a href="#rules" data-i18="nav.rules">Правила</a>
+      <a href="#programs" data-i18="nav.programs">Программы</a>
     </nav>
   </header>
 
+  <!-- Переключатель языка: справа сбоку -->
+  <div class="lang-switch" role="group" aria-label="Язык / Language">
+    <button type="button" class="lang-btn" data-lang="ru" aria-pressed="true">
+      <svg viewBox="0 0 30 20" width="24" height="16" aria-hidden="true">
+        <clipPath id="fr"><rect width="30" height="20" rx="3"/></clipPath>
+        <g clip-path="url(#fr)">
+          <rect width="30" height="20" fill="#fff"/>
+          <rect y="6.67" width="30" height="6.66" fill="#0039A6"/>
+          <rect y="13.33" width="30" height="6.67" fill="#D5212E"/>
+        </g>
+      </svg>
+      <span>Русский</span>
+    </button>
+    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">
+      <svg viewBox="0 0 30 20" width="24" height="16" aria-hidden="true">
+        <clipPath id="fg"><rect width="30" height="20" rx="3"/></clipPath>
+        <g clip-path="url(#fg)">
+          <rect width="30" height="20" fill="#012169"/>
+          <path d="M0 0 L30 20 M30 0 L0 20" stroke="#fff" stroke-width="4"/>
+          <path d="M0 0 L30 20 M30 0 L0 20" stroke="#C8102E" stroke-width="2"/>
+          <path d="M15 0 V20 M0 10 H30" stroke="#fff" stroke-width="6"/>
+          <path d="M15 0 V20 M0 10 H30" stroke="#C8102E" stroke-width="4"/>
+        </g>
+      </svg>
+      <span>English</span>
+    </button>
+  </div>
+
   <main id="top">
-    <!-- Инструктаж -->
     <section class="hero">
-      <h1>Инструкция к&nbsp;проверке через&nbsp;AnyDesk</h1>
-      <p class="subtitle">Пожалуйста, ознакомьтесь с&nbsp;правилами перед началом проверки</p>
+      <h1 data-i18="hero.title">Инструкция к&nbsp;проверке через&nbsp;AnyDesk</h1>
+      <p class="subtitle" data-i18="hero.sub">Пожалуйста, ознакомьтесь с&nbsp;правилами перед началом проверки</p>
     </section>
 
     <section id="rules" class="rules">
       <article class="rule-card">
         <span class="rule-num">1</span>
-        <h2>Не трогайте мышь</h2>
-        <p>Во время проверки вы&nbsp;не должны трогать мышь и&nbsp;двигать ею.</p>
+        <h2 data-i18="r1.title">Не трогайте мышь</h2>
+        <p data-i18="r1.body">Во время проверки вы&nbsp;не должны трогать мышь и&nbsp;двигать ею.</p>
       </article>
 
       <article class="rule-card">
         <span class="rule-num">2</span>
-        <h2>Разрешённые программы</h2>
-        <p>Разрешённые и&nbsp;безопасные программы на&nbsp;проверке на&nbsp;читы:</p>
-        <a class="btn" href="#programs">посмотреть весь список</a>
+        <h2 data-i18="r2.title">Разрешённые программы</h2>
+        <p data-i18="r2.body">Разрешённые и&nbsp;безопасные программы на&nbsp;проверке на&nbsp;читы:</p>
+        <a class="btn" href="#programs" data-i18="r2.btn">посмотреть весь список</a>
       </article>
 
       <article class="rule-card">
         <span class="rule-num">3</span>
-        <h2>Итоги проверки</h2>
-        <p>Если найдут читы&nbsp;— бан. Признание&nbsp;— бан с&nbsp;уменьшенным сроком, а&nbsp;если вы&nbsp;чисты, вам могут дать подарок.</p>
+        <h2 data-i18="r3.title">Итоги проверки</h2>
+        <p data-i18="r3.body">Если найдут читы&nbsp;— бан. Признание&nbsp;— бан с&nbsp;уменьшенным сроком, а&nbsp;если вы&nbsp;чисты, вам могут дать подарок.</p>
       </article>
     </section>
 
-    <!-- Список программ -->
     <section id="programs" class="programs">
       <div class="programs-head">
-        <h2>Разрешённые программы</h2>
-        <input id="search" type="search" placeholder="Поиск программы…" aria-label="Поиск программы">
+        <h2 data-i18="prog.title">Разрешённые программы</h2>
+        <input id="search" type="search" aria-label="Поиск программы">
       </div>
-      <div id="filters" class="filters" role="tablist" aria-label="Категории"></div>
       <div id="grid" class="grid"></div>
-      <p id="empty" class="empty" hidden>Ничего не найдено — попробуйте другое название или категорию.</p>
+      <p id="empty" class="empty" hidden data-i18="prog.empty">Ничего не найдено — попробуйте другое название.</p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Список обновляется администрацией. Сомневаетесь в&nbsp;программе — спросите до&nbsp;начала проверки.</p>
+    <p data-i18="footer">Список обновляется администрацией. Сомневаетесь в&nbsp;программе — спросите до&nbsp;начала проверки.</p>
   </footer>
 
   <script src="app.js"></script>
