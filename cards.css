@@ -1,0 +1,255 @@
+﻿/* ===== карточки программ, вкладки «Команды», адаптив ===== */
+
+/* ---------- сетка ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* ---------- карточка: кликабельный якорь ---------- */
+.card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: 148px;
+  padding: 20px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--glass-br);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(110, 168, 254, 0.55);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+}
+
+.card-body { transition: filter .22s ease, opacity .22s ease; }
+
+/* при наведении содержимое размывается */
+.card:hover .card-body {
+  filter: blur(5px);
+  opacity: 0.45;
+}
+
+/* название — всегда жирное */
+.card-name {
+  margin: 0 0 8px;
+  font-size: 1.32rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.card-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.soon-flag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-br);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---------- оверлей при наведении: значок download + жирная надпись ---------- */
+.card-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity .22s ease;
+  pointer-events: none;
+}
+
+.card:hover .card-hover,
+.card:focus-visible .card-hover { opacity: 1; }
+
+.dl-ic {
+  font-size: 40px;
+  color: var(--accent);
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5));
+}
+
+.dl-label {
+  font-size: 1.02rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- пустой результат / сноска ---------- */
+.empty {
+  margin: 30px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.footer-note {
+  margin: 30px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---------- вкладка «Команды» ---------- */
+.teams {
+  display: grid;
+  gap: 18px;
+}
+
+.team-card {
+  padding: 20px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--glass-br);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.team-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.team-title { margin: 0 0 4px; font-size: 1.15rem; font-weight: 800; }
+
+.team-desc { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-br);
+  background: var(--glass-strong);
+  color: var(--text);
+  font: 700 0.82rem "Inter", sans-serif;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.copy-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+.copy-btn.done {
+  background: rgba(60, 200, 120, 0.2);
+  border-color: rgba(60, 200, 120, 0.5);
+  color: #b9f3cf;
+}
+
+.copy-ic { font-size: 18px; }
+
+/* тёмная плашка запроса (~75% непрозрачности чёрного) */
+.team-query {
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: var(--radius-s);
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #c9f7d9;
+  font: 500 0.8rem/1.6 ui-monospace, "Cascadia Mono", Consolas, monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ---------- плавучка: активная страница + разделители ---------- */
+.nav-links { gap: 8px; }
+
+.nav-links a + a { border-left: 1px solid var(--glass-br); }
+
+.nav-links a { padding-left: 18px; padding-right: 18px; }
+
+.nav-links a.active {
+  color: var(--text);
+  background: var(--glass-strong);
+}
+
+/* ---------- отдельные страницы: отступ под плавучкой ---------- */
+#news,
+#content { padding-top: 128px; padding-bottom: 40px; }
+
+/* ---------- страница «Новости» ---------- */
+.news {
+  display: grid;
+  gap: 16px;
+  max-width: 780px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+.news-card {
+  padding: 20px 22px;
+  border-radius: var(--radius-m);
+}
+
+.news-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.news-tag {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(110, 168, 254, 0.16);
+  border: 1px solid rgba(110, 168, 254, 0.35);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.news-date { color: var(--muted); font-size: 0.8rem; font-weight: 600; }
+
+.news-title { margin: 0 0 8px; font-size: 1.25rem; font-weight: 800; }
+
+.news-text { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* ---------- адаптив ---------- */
+@media (max-width: 720px) {
+  .site-nav { flex-wrap: wrap; justify-content: center; gap: 10px; padding: 12px 14px; }
+  .nav-links { order: 3; width: 100%; justify-content: center; margin: 0; }
+  .hero { padding-top: 230px; }
+  #news,
+  #content { padding-top: 215px; }
+  .section-title { font-size: 34px; }
+  .team-head { flex-direction: column; }
+  .linksbar { flex-direction: column; }
+  .link-tab { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}

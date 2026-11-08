@@ -1,6 +1,8 @@
-/* ===== логика страницы: вкладки, поиск, копирование ===== */
+﻿/* ===== логика страницы: страницы, вкладки, поиск, копирование ===== */
 let lang = localStorage.getItem("lang") || "ru";
 let tab = localStorage.getItem("tab") === "teams" ? "teams" : "programs";
+let page = ["home", "news", "programs"].includes(localStorage.getItem("page"))
+  ? localStorage.getItem("page") : "home";
 
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
@@ -8,14 +10,46 @@ const emptyMsg = document.getElementById("empty");
 const viewPrograms = document.getElementById("view-programs");
 const viewTeams = document.getElementById("view-teams");
 const teamsList = document.getElementById("teams-list");
+const newsList = document.getElementById("news-list");
 const tabButtons = document.querySelectorAll(".tab-btn");
-const navLinks = document.querySelectorAll(".site-nav a");
+const navLinks = document.querySelectorAll(".site-nav [data-page]");
+const pages = {
+  home: document.getElementById("home"),
+  news: document.getElementById("news"),
+  programs: document.getElementById("content")
+};
 
 function esc(s) {
-  return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  return s.replace(/[&<>\"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
 }
 
-/* ---------- вкладки ---------- */
+/* ---------- страницы: Главная / Новости / Программы (по одной) ---------- */
+function showPage(name, scroll) {
+  page = pages[name] ? name : "home";
+  localStorage.setItem("page", page);
+  Object.entries(pages).forEach(([key, el]) => { el.hidden = key !== page; });
+  navLinks.forEach(a => {
+    const on = a.dataset.page === page;
+    a.classList.toggle("active", on);
+    if (on) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
+  if (scroll) {
+    history.replaceState(null, "", "#" + (page === "programs" ? "content" : page));
+    const se = document.documentElement.style;
+    se.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    se.scrollBehavior = "";
+  }
+}
+
+navLinks.forEach(a =>
+  a.addEventListener("click", e => {
+    e.preventDefault();
+    showPage(a.dataset.page, true);
+  }));
+
+/* ---------- вкладки внутри страницы «Программы» ---------- */
 function showTab(name, scroll) {
   tab = name === "teams" ? "teams" : "programs";
   localStorage.setItem("tab", tab);
@@ -27,19 +61,28 @@ function showTab(name, scroll) {
     b.setAttribute("aria-selected", String(on));
   });
   if (scroll) {
-    location.hash = "#content";
+    showPage("programs", false);
   }
 }
 
 tabButtons.forEach(btn =>
   btn.addEventListener("click", () => showTab(btn.dataset.tab, true)));
 
-navLinks.forEach(a =>
-  a.addEventListener("click", () => {
-    if (a.dataset.goto) showTab(a.dataset.goto, false);
-  }));
+/* ---------- страница «Новости»: карточки из NEWS_ITEMS ---------- */
+function renderNews() {
+  const t = I18N[lang];
+  newsList.innerHTML = NEWS_ITEMS.map(n => `
+    <article class="news-card glass">
+      <div class="news-top">
+        <span class="news-tag">${esc(t["news." + n.tag] || n.tag)}</span>
+        <time class="news-date">${esc(n[lang + "Date"])}</time>
+      </div>
+      <h3 class="news-title">${esc(t[n.titleKey])}</h3>
+      <p class="news-text">${esc(t[n.bodyKey])}</p>
+    </article>`).join("");
+}
 
-/* ---------- карточки программ: только название + описание ---------- */
+/* ---------- карточки программ: название + описание + hover-оверлей ---------- */
 function render() {
   const t = I18N[lang];
   const q = search.value.trim().toLowerCase();
@@ -52,17 +95,24 @@ function render() {
       ? ` href="${href}" target="_blank" rel="noopener noreferrer"`
       : "";
     const soon = p.url ? "" : `<span class="soon-flag">Checker Soon</span>`;
+    const hover = `<span class="card-hover" aria-hidden="true">
+        <span class="material-symbols-rounded dl-ic">download</span>
+        <span class="dl-label">${esc(t["card.download"])}</span>
+      </span>`;
     return `<${tag} class="card"${link}>
-      <h3 class="card-name">${esc(p.name)}</h3>
-      <p class="card-desc">${esc(lang === "ru" ? p.ru : p.en)}</p>
-      ${soon}
+      <div class="card-body">
+        <h3 class="card-name">${esc(p.name)}</h3>
+        <p class="card-desc">${esc(lang === "ru" ? p.ru : p.en)}</p>
+        ${soon}
+      </div>
+      ${hover}
     </${tag}>`;
   }).join("");
 
   emptyMsg.hidden = items.length > 0;
 }
 
-/* ---------- вкладки «Команды»: плашки с кнопкой копирования ---------- */
+/* ---------- вкладка «Команды»: плашки с кнопкой копирования ---------- */
 function renderTeams() {
   const t = I18N[lang];
   teamsList.innerHTML = TEAM_ITEMS.map((item, i) => `
@@ -123,6 +173,7 @@ function applyLang() {
     b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
   render();
   renderTeams();
+  renderNews();
 }
 
 document.querySelectorAll(".lang-btn").forEach(btn =>
@@ -135,4 +186,5 @@ document.querySelectorAll(".lang-btn").forEach(btn =>
 search.addEventListener("input", render);
 
 showTab(tab, false);
+showPage(page, false);
 applyLang();
