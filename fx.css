@@ -1,0 +1,196 @@
+/* ===== fx.css: анимации, градиентный заголовок, рельс «Новости», пасхалка ===== */
+
+/* ---------- появление контента вкладки/страницы ---------- */
+@keyframes view-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.page.anim-in,
+.view.anim-in { animation: view-in .45s cubic-bezier(.22, .61, .36, 1) both; }
+
+/* каскад у карточек и плашек */
+.anim-in .news-card,
+.anim-in .card,
+.anim-in .team-card,
+.anim-in .link-tab {
+  animation: view-in .5s cubic-bezier(.22, .61, .36, 1) both;
+}
+.anim-in .news-card:nth-child(1), .anim-in .card:nth-child(1),  .anim-in .team-card:nth-child(1)  { animation-delay: .05s; }
+.anim-in .card:nth-child(2),  .anim-in .team-card:nth-child(2)  { animation-delay: .10s; }
+.anim-in .card:nth-child(3),  .anim-in .team-card:nth-child(3)  { animation-delay: .15s; }
+.anim-in .card:nth-child(4)  { animation-delay: .20s; }
+.anim-in .card:nth-child(5)  { animation-delay: .25s; }
+.anim-in .card:nth-child(6)  { animation-delay: .30s; }
+.anim-in .card:nth-child(n+7) { animation-delay: .35s; }
+
+/* ---------- hover-анимации ---------- */
+.tab-btn:hover { transform: translateY(-2px); }
+.tab-btn:active { transform: translateY(0) scale(.97); }
+
+.nav-links a { transition: all .25s ease; }
+.nav-links a:hover { transform: translateY(-2px); color: var(--text); }
+
+.card:hover { transform: translateY(-5px) scale(1.015); }
+.team-card { transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.team-card:hover { transform: translateY(-3px); border-color: rgba(255, 255, 255, 0.28); }
+
+.link-tab:active { transform: scale(.97); }
+.copy-btn { transition: all .2s ease; }
+.copy-btn:hover { transform: translateY(-2px) scale(1.03); }
+.copy-btn:active { transform: scale(.95); }
+.lang-btn { transition: all .2s ease; }
+.lang-btn:hover { transform: translateY(-1px); color: var(--text); }
+.search-wrap { transition: box-shadow .25s ease, border-color .25s ease; }
+.search-wrap:focus-within { border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25); }
+
+/* ---------- заголовок «Программы для проверок»: жирный, по центру, розово-фиолетовый градиент с переливом ---------- */
+@keyframes shimmer-move {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.section-title.shimmer {
+  text-align: center;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff5fa2, #d946ef, #8b5cf6, #ff5fa2);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-move 4s ease-in-out infinite;
+}
+
+/* ---------- страница «Новости»: жирная вертикальная надпись слева по центру + анонс ---------- */
+.news-layout {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.news-rail {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+}
+
+.news-rail-text {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--text);
+  text-shadow: 0 0 24px rgba(217, 70, 239, 0.45);
+}
+
+#news .news { flex: 1; min-width: 0; margin: 0; padding-bottom: 0; }
+
+/* ---------- пасхалка: ERROR 404 поверх экрана ---------- */
+@keyframes egg-pop {
+  0%   { opacity: 0; transform: scale(.6) rotate(-4deg); }
+  60%  { opacity: 1; transform: scale(1.06) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes egg-glitch {
+  0%, 100% { text-shadow: 3px 0 #ff5fa2, -3px 0 #8b5cf6; transform: translateX(0); }
+  20% { text-shadow: -4px 0 #ff5fa2, 4px 0 #8b5cf6; transform: translateX(3px); }
+  40% { text-shadow: 4px 0 #d946ef, -4px 0 #6ea8fe; transform: translateX(-3px); }
+  60% { text-shadow: -2px 0 #ff5fa2, 2px 0 #8b5cf6; transform: translateX(2px); }
+  80% { text-shadow: 2px 0 #6ea8fe, -2px 0 #d946ef; transform: translateX(-2px); }
+}
+
+.egg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(5, 5, 12, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.egg-overlay.open { opacity: 1; }
+
+.egg-card {
+  text-align: center;
+  animation: egg-pop .5s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+.egg-code {
+  font: 900 clamp(56px, 14vw, 150px)/1 "Inter", sans-serif;
+  letter-spacing: 0.04em;
+  color: #fff;
+  animation: egg-glitch .9s steps(2, end) infinite;
+}
+
+.egg-sub {
+  margin-top: 10px;
+  font: 700 0.95rem "Inter", sans-serif;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.egg-msg {
+  margin-top: 34px;
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff5fa2, #d946ef, #8b5cf6);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-move 3s ease-in-out infinite;
+}
+
+.egg-hint {
+  margin-top: 26px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  animation: view-in 1s ease .6s both;
+}
+
+body.egg-open { overflow: hidden; }
+
+/* иконка TurboGrief — лёгкий отклик на hover (подсказка пасхалки) */
+.brand-logo { cursor: pointer; transition: transform .25s ease, filter .25s ease; }
+.brand-logo:hover { transform: rotate(-8deg) scale(1.12); filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.7)); }
+
+/* ---------- адаптив ---------- */
+@media (max-width: 640px) {
+  .news-layout { flex-direction: column; align-items: stretch; gap: 14px; }
+  .news-rail { min-height: 0; justify-content: flex-start; }
+  .news-rail-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 26px;
+    text-align: center;
+    width: 100%;
+  }
+  .section-title.shimmer { font-size: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page.anim-in, .view.anim-in,
+  .anim-in .news-card, .anim-in .card, .anim-in .team-card, .anim-in .link-tab,
+  .section-title.shimmer, .egg-code, .egg-msg, .egg-card, .egg-hint { animation: none; }
+  .card:hover, .team-card:hover, .tab-btn:hover, .nav-links a:hover,
+  .copy-btn:hover, .lang-btn:hover, .brand-logo:hover { transform: none; }
+}

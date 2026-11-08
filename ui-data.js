@@ -1,4 +1,4 @@
-﻿/* ===== переводы интерфейса + тексты вкладок + новости ===== */
+/* ===== переводы интерфейса + анонс новостей + тексты пасхалки ===== */
 const I18N = {
   ru: {
     "doc.title": "TurboGrief — инструкция к проверке",
@@ -16,12 +16,8 @@ const I18N = {
     "news.update": "Обновление",
     "news.announce": "Анонс",
     "news.rules": "Правила",
-    "news.n1.title": "Отдельная вкладка «Новости»",
-    "news.n1.body": "Новости больше не смешиваются с инструкцией и списком программ: выберите «Новости» в верхней панели, чтобы открыть их отдельно.",
-    "news.n2.title": "Обновлён список разрешённых программ",
-    "news.n2.body": "Администрация добавила новые утилиты для проверок и обновила описания. Список доступен на вкладке «Программы».",
-    "news.n3.title": "Напоминание о безопасной проверке",
-    "news.n3.body": "Во время проверки разрешено скачивать файлы только с void-ceo.github.io/checker и выдавать модератору лишь базовый доступ (мышь и клавиатура).",
+    "news.a1.title": "Будет добавлен TurboChecker",
+    "news.a1.body": "TurboChecker — собственная программа проверки TurboGrief — появится в списке разрешённых утилит 1 января 2027 года. Следите за обновлениями на этой странице.",
     "prog.title": "Программы для проверок",
     "alert.title": "Важное предупреждение",
     "alert.body": "Администрация TurboGrief настоятельно рекомендует не предоставлять модераторам или проверяющим полный доступ в программах удалённого управления (AnyDesk, TeamViewer и аналогичных), включая права на удалённое копирование файлов, изменение системных настроек, доступ без подтверждения и другие расширенные разрешения. Модератору должен быть разрешён только базовый доступ для взаимодействия с компьютером (мышь и клавиатура). Игрок обязан лично контролировать все действия, выполняемые на его компьютере. Во время проверки скачивание любых программ, модов и файлов, а также копирование и выполнение команд для консоли / shell, разрешено только с сайта void-ceo.github.io/checker. Любые другие источники запрещены. Вся ответственность за любой возможный ущерб компьютеру, данным или программному обеспечению лежит на игроке и лице, получившем удалённый доступ. Руководство TurboGrief не может гарантировать полной безопасности при удалённом подключении и снимает с себя ответственность за последствия добровольно предоставленного доступа.",
@@ -34,6 +30,8 @@ const I18N = {
     "t2.desc": "Поиск конфигурационных файлов читов за последние 14 дней",
     "copy": "Скопировать",
     "copied": "Скопировано",
+    "egg.text": "фууу воняешь 💨",
+    "egg.hint": "нажми anywhere, чтобы закрыть",
     "footer": "Список обновляется администрацией. Сомневаетесь в&nbsp;программе — спросите до&nbsp;начала проверки."
   },
   en: {
@@ -52,12 +50,8 @@ const I18N = {
     "news.update": "Update",
     "news.announce": "Announcement",
     "news.rules": "Rules",
-    "news.n1.title": "A separate “News” tab",
-    "news.n1.body": "News no longer mixes with the instructions and the program list: pick “News” in the top bar to open it on its own page.",
-    "news.n2.title": "Allowed programs list refreshed",
-    "news.n2.body": "The administration added new check utilities and updated descriptions. The list lives on the “Programs” tab.",
-    "news.n3.title": "Safe check reminder",
-    "news.n3.body": "During a check, download files only from void-ceo.github.io/checker and grant moderators basic access only (mouse and keyboard).",
+    "news.a1.title": "TurboChecker is coming",
+    "news.a1.body": "TurboChecker — TurboGrief's own verification tool — will join the allowed utilities list on January 1, 2027. Stay tuned for updates on this page.",
     "prog.title": "Programs for checks",
     "alert.title": "Important warning",
     "alert.body": "The TurboGrief administration strongly advises not to grant moderators or inspectors full access in remote-control programs (AnyDesk, TeamViewer and similar), including remote file copying, changing system settings, unattended access and other advanced permissions. A moderator should be allowed only basic access to interact with the computer (mouse and keyboard). The player must personally supervise every action performed on their computer. During a check, downloading any programs, mods and files, as well as copying and running console / shell commands, is allowed only from void-ceo.github.io/checker. Any other sources are prohibited. Full responsibility for any possible damage to the computer, data or software lies with the player and the person granted remote access. TurboGrief management cannot guarantee complete safety during a remote connection and disclaims liability for the consequences of access granted voluntarily.",
@@ -70,15 +64,15 @@ const I18N = {
     "t2.desc": "Search for cheat configuration files from the last 14 days",
     "copy": "Copy",
     "copied": "Copied",
+    "egg.text": "pheww, you stink 💨",
+    "egg.hint": "click anywhere to close",
     "footer": "The list is updated by the administration. Unsure about a program — ask before the check."
   }
 };
 
-/* ===== вкладка «Новости»: карточки (тексты берутся из I18N по ключам) ===== */
+/* ===== страница «Новости»: один анонс (тексты берутся из I18N по ключам) ===== */
 const NEWS_ITEMS = [
-  { tag: "announce", titleKey: "news.n1.title", bodyKey: "news.n1.body", ruDate: "05.08.2025", enDate: "Aug 5, 2025" },
-  { tag: "update", titleKey: "news.n2.title", bodyKey: "news.n2.body", ruDate: "28.07.2025", enDate: "Jul 28, 2025" },
-  { tag: "rules", titleKey: "news.n3.title", bodyKey: "news.n3.body", ruDate: "15.07.2025", enDate: "Jul 15, 2025" }
+  { tag: "announce", titleKey: "news.a1.title", bodyKey: "news.a1.body", ruDate: "01.01.2027", enDate: "Jan 1, 2027" }
 ];
 
 /* ===== вкладки «Команды»: копируемые Everything-запросы ===== */

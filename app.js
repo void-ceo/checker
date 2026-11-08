@@ -1,4 +1,4 @@
-﻿/* ===== логика страницы: страницы, вкладки, поиск, копирование ===== */
+﻿/* ===== логика страницы: страницы, вкладки, поиск, копирование, пасхалка ===== */
 let lang = localStorage.getItem("lang") || "ru";
 let tab = localStorage.getItem("tab") === "teams" ? "teams" : "programs";
 let page = ["home", "news", "programs"].includes(localStorage.getItem("page"))
@@ -13,6 +13,7 @@ const teamsList = document.getElementById("teams-list");
 const newsList = document.getElementById("news-list");
 const tabButtons = document.querySelectorAll(".tab-btn");
 const navLinks = document.querySelectorAll(".site-nav [data-page]");
+const eggOverlay = document.getElementById("egg-overlay");
 const pages = {
   home: document.getElementById("home"),
   news: document.getElementById("news"),
@@ -21,6 +22,14 @@ const pages = {
 
 function esc(s) {
   return s.replace(/[&<>\"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
+}
+
+/* ---------- анимация появления: перезапуск класса на элементе ---------- */
+function animateIn(el) {
+  if (!el) return;
+  el.classList.remove("anim-in");
+  void el.offsetWidth; /* принудительный reflow, чтобы анимация стартовала заново */
+  el.classList.add("anim-in");
 }
 
 /* ---------- страницы: Главная / Новости / Программы (по одной) ---------- */
@@ -34,6 +43,7 @@ function showPage(name, scroll) {
     if (on) a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   });
+  animateIn(pages[page]);
   if (scroll) {
     history.replaceState(null, "", "#" + (page === "programs" ? "content" : page));
     const se = document.documentElement.style;
@@ -55,6 +65,7 @@ function showTab(name, scroll) {
   localStorage.setItem("tab", tab);
   viewPrograms.hidden = tab !== "programs";
   viewTeams.hidden = tab !== "teams";
+  animateIn(tab === "teams" ? viewTeams : viewPrograms);
   tabButtons.forEach(b => {
     const on = b.dataset.tab === tab;
     b.classList.toggle("active", on);
@@ -94,7 +105,7 @@ function render() {
     const link = p.url
       ? ` href="${href}" target="_blank" rel="noopener noreferrer"`
       : "";
-    const soon = p.url ? "" : `<span class="soon-flag">Checker Soon</span>`;
+    const soon = ""; /* флаг Checker Soon убран по запросу */
     const hover = `<span class="card-hover" aria-hidden="true">
         <span class="material-symbols-rounded dl-ic">download</span>
         <span class="dl-label">${esc(t["card.download"])}</span>
@@ -158,6 +169,36 @@ teamsList.addEventListener("click", async e => {
     btn.querySelector(".copy-label").textContent = I18N[lang].copy;
   }, 1800);
 });
+
+/* ---------- пасхалка: клик по иконке TurboGrief -> ERROR 404 ---------- */
+function openEgg() {
+  if (!eggOverlay || !eggOverlay.hidden) return;
+  eggOverlay.hidden = false;
+  document.body.classList.add("egg-open");
+  requestAnimationFrame(() => eggOverlay.classList.add("open"));
+}
+
+function closeEgg() {
+  if (!eggOverlay || eggOverlay.hidden) return;
+  eggOverlay.classList.remove("open");
+  document.body.classList.remove("egg-open");
+  setTimeout(() => { eggOverlay.hidden = true; }, 350);
+}
+
+if (eggOverlay) {
+  eggOverlay.addEventListener("click", closeEgg);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeEgg();
+  });
+}
+
+document.querySelectorAll(".brand-logo").forEach(logo =>
+  logo.addEventListener("click", e => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (eggOverlay && eggOverlay.hidden) openEgg();
+    else closeEgg();
+  }));
 
 /* ---------- язык ---------- */
 function applyLang() {
