@@ -15,8 +15,8 @@ const I18N = {
     "links.soon": "Soon",
     "rules.title": "Правила во&nbsp;время проверки",
     "rules.r1": "Не трогайте мышь и&nbsp;клавиатуру во&nbsp;время проверки.",
-    "rules.r2": "Если проверка затягивается&nbsp;&mdash; спрашивайте, почему так долго.",
-    "rules.r3": "Если модератор или&nbsp;кто-то из&nbsp;высшего состава лезет в&nbsp;PowerShell или&nbsp;CMD&nbsp;&mdash; немедленно отключайтесь и&nbsp;пишите высшему составу.",
+    "rules.r2": "Если проверка затягивается&nbsp;- спрашивайте, почему так долго (если проверяет не&nbsp;Ocean).",
+    "rules.r3": "Если модератор или&nbsp;кто-то из&nbsp;высшего состава лезет в&nbsp;PowerShell или&nbsp;CMD&nbsp;- немедленно отключайтесь и&nbsp;пишите высшему составу.",
     "rules.back": "Назад к программам",
     "news.title": "Новости",
     "news.update": "Обновление",
@@ -38,10 +38,10 @@ const I18N = {
     "copied": "Скопировано",
     "egg.text": "фууу воняешь 💨",
     "egg.hint": "нажми anywhere, чтобы закрыть",
-    "footer": "Список обновляется администрацией. Сомневаетесь в&nbsp;программе — спросите до&nbsp;начала проверки."
+    "footer": "Список обновляется администрацией. Сомневаетесь в&nbsp;программе - спросите до&nbsp;начала проверки."
   },
   en: {
-    "doc.title": "TurboGrief — AnyDesk Check Instructions",
+    "doc.title": "TurboGrief - AnyDesk Check Instructions",
     "nav.home": "Home",
     "nav.news": "News",
     "nav.programs": "Programs",
@@ -55,8 +55,8 @@ const I18N = {
     "links.soon": "Soon",
     "rules.title": "Rules during a&nbsp;check",
     "rules.r1": "Do not touch the mouse or&nbsp;keyboard during a&nbsp;check.",
-    "rules.r2": "If the check takes too long&nbsp;&mdash; ask why (unless the inspector is not&nbsp;Ocean).",
-    "rules.r3": "If a moderator or someone from the senior staff opens PowerShell or&nbsp;CMD&nbsp;&mdash; disconnect immediately and message the senior staff.",
+    "rules.r2": "If the check takes too long&nbsp;- ask why (unless the inspector is not&nbsp;Ocean).",
+    "rules.r3": "If a moderator or someone from the senior staff opens PowerShell or&nbsp;CMD&nbsp;- disconnect immediately and message the senior staff.",
     "rules.back": "Back to programs",
     "news.title": "News",
     "news.update": "Update",
@@ -78,7 +78,7 @@ const I18N = {
     "copied": "Copied",
     "egg.text": "pheww, you stink 💨",
     "egg.hint": "click anywhere to close",
-    "footer": "The list is updated by the administration. Unsure about a program — ask before the check."
+    "footer": "The list is updated by the administration. Unsure about a program - ask before the check."
   }
 };
 

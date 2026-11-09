@@ -174,7 +174,7 @@
 
 body.egg-open { overflow: hidden; }
 
-/* иконка TurboGrief — лёгкий отклик на hover (подсказка пасхалки) */
+/* иконка TurboGrief - лёгкий отклик на hover (подсказка пасхалки) */
 .brand-logo { cursor: pointer; transition: transform .25s ease, filter .25s ease; }
 .brand-logo:hover { transform: rotate(-8deg) scale(1.12); filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.7)); }
 

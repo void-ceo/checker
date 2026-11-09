@@ -15,13 +15,13 @@
   animation: shimmer-move 4s ease-in-out infinite;
 }
 
-/* заголовок на странице «Программы» был перекрашен родителем — возвращаем текст-градиент */
+/* заголовок на странице «Программы» был перекрашен родителем - возвращаем текст-градиент */
 .hero-title.plain .click-title {
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
 }
 
-/* «Инструкция к проверке через AnyDesk» — ссылка, а не обычный текст */
+/* «Инструкция к проверке через AnyDesk» - ссылка, а не обычный текст */
 .click-title {
   text-decoration: none;
   cursor: pointer;

@@ -1,13 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6d5dfc"/>
-      <stop offset="1" stop-color="#3ec6ff"/>
-    </linearGradient>
-  </defs>
-  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0d1020" stroke="url(#g)" stroke-width="3"/>
-  <path d="M32 10 L50 17 V31 C50 43 42 51 32 55 C22 51 14 43 14 31 V17 Z"
-        fill="none" stroke="url(#g)" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M23 32 L30 39 L42 24" fill="none" stroke="url(#g)" stroke-width="5"
-        stroke-linecap="round" stroke-linejoin="round"/>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="64.000000pt" height="64.000000pt" viewBox="0 0 64.000000 64.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M163 573 l-133 -45 0 -203 c0 -184 2 -203 17 -210 10 -3 74 -26 143
+-49 l125 -43 140 47 140 47 3 205 2 206 -137 46 c-76 25 -145 46 -153 45 -8 0
+-75 -21 -147 -46z m267 -12 c63 -21 123 -42 133 -46 15 -6 17 -25 17 -194 l0
+-187 -134 -44 -134 -43 -128 44 -129 44 -3 186 -2 186 127 46 c71 25 130 46
+133 46 3 1 57 -17 120 -38z"/>
+<path d="M193 536 l-123 -40 0 -172 0 -172 123 -41 122 -41 123 41 122 41 0
+172 0 171 -122 41 -123 40 -122 -40z m107 -21 c0 -20 -7 -26 -40 -36 l-40 -12
+0 -142 0 -142 40 -13 c34 -11 40 -17 40 -41 l0 -28 -67 23 -68 23 -3 147 -3
+147 -29 -6 c-27 -6 -30 -4 -30 18 0 23 9 28 88 55 108 38 112 38 112 7z m137
+-6 l93 -31 0 -53 c0 -48 -2 -53 -20 -48 -14 4 -20 14 -20 34 0 31 -19 43 -82
+56 l-28 6 0 -148 0 -147 28 7 c57 14 77 29 80 61 3 27 -1 33 -27 44 -23 9 -31
+19 -31 37 0 16 5 23 13 20 6 -2 29 -10 50 -18 l37 -13 0 -73 c0 -51 -4 -75
+-12 -77 -24 -6 -163 -49 -175 -53 -10 -4 -13 42 -13 211 0 119 3 216 7 216 5
+0 50 -14 100 -31z"/>
+<path d="M631 554 c0 -11 3 -14 6 -6 3 7 2 16 -1 19 -3 4 -6 -2 -5 -13z"/>
+<path d="M625 520 c3 -5 8 -10 11 -10 2 0 4 5 4 10 0 6 -5 10 -11 10 -5 0 -7
+-4 -4 -10z"/>
+</g>
 </svg>
