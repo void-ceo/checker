@@ -85,7 +85,10 @@ tabButtons.forEach(btn =>
 /* ---------- страница «Новости»: карточки из NEWS_ITEMS ---------- */
 function renderNews() {
   const t = I18N[lang];
-  newsList.innerHTML = NEWS_ITEMS.map(n => `
+  newsList.innerHTML = [...NEWS_ITEMS].sort((a, b) => {
+    const dateValue = item => { const [day, month, year] = item.ruDate.split(".").map(Number); return new Date(year, month - 1, day).getTime(); };
+    return dateValue(a) - dateValue(b);
+  }).map(n => `
     <article class="news-card glass">
       <div class="news-top">
         <span class="news-tag">${esc(t["news." + n.tag] || n.tag)}</span>
