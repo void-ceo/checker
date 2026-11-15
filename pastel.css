@@ -34,7 +34,7 @@
 /* ---------- 2. hover: заголовок блюрится + жирная надпись «Нажми на меня» ---------- */
 .hero-title.plain { position: relative; }
 
-.ct-text { transition: filter .25s ease; }
+.click-title { transition: filter .25s ease; }
 
 .clickme {
   position: absolute;
@@ -56,8 +56,8 @@
 .hero-title.plain:hover .clickme,
 .hero-title.plain:focus-within .clickme { opacity: 1; }
 
-.hero-title.plain:hover .ct-text,
-.hero-title.plain:focus-within .ct-text { filter: blur(7px); }
+.hero-title.plain:hover .click-title,
+.hero-title.plain:focus-within .click-title { filter: blur(9px); }
 
 /* ---------- 3. ссылка void-ceo.github.io/checker в предупреждении ---------- */
 .alert-link {
@@ -149,5 +149,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .brand-name, .click-title { animation: none; }
-  .clickme, .ct-text { transition: none; }
+  .clickme, .ct-text, .click-title { transition: none; }
 }
